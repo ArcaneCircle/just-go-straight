@@ -1,6 +1,6 @@
 # Just go straight
 
-![Capture](capture.png)
+![Capture](public/b.png)
 
 A port to webxdc of [Just go straight](https://github.com/Gimond/just-go-straight) game.
 
