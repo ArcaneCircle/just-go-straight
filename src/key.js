@@ -15,15 +15,23 @@ key.onKeydown = function (event) {
   _pressed[event.keyCode] = true;
 };
 
-key.onKeyup = function  (event) {
+key.onKeyup = function (event) {
   _pressed[event.keyCode] = null;
 };
 
-window.addEventListener('keyup', function (e) {
-  key.onKeyup(e);
-}, false);
-window.addEventListener('keydown', function (e) {
-  key.onKeydown(e);
-}, false);
+window.addEventListener(
+  "keyup",
+  function (e) {
+    key.onKeyup(e);
+  },
+  false,
+);
+window.addEventListener(
+  "keydown",
+  function (e) {
+    key.onKeydown(e);
+  },
+  false,
+);
 
 export default key;

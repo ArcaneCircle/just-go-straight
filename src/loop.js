@@ -6,13 +6,13 @@ var stats;
 //   document.body.appendChild(stats.dom);
 // }
 
-function timestamp () {
-  return window.performance && window.performance.now ?
-    window.performance.now() :
-    Date.now();
+function timestamp() {
+  return window.performance && window.performance.now
+    ? window.performance.now()
+    : Date.now();
 }
 
-function raf (fn) {
+function raf(fn) {
   return window.requestAnimationFrame(function () {
     stats && stats.begin();
 
@@ -33,9 +33,11 @@ function raf (fn) {
   });
 }
 
-export default {start: function start(fn) {
-  return raf(function tick (dt) {
-    fn(dt);
-    raf(tick);
-  });
-}};
+export default {
+  start: function start(fn) {
+    return raf(function tick(dt) {
+      fn(dt);
+      raf(tick);
+    });
+  },
+};

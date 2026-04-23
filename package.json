@@ -3,10 +3,13 @@
   "type": "module",
   "scripts": {
     "start": "vite --port 3000",
+    "fix": "prettier --write .",
+    "check": "prettier --check .",
     "build": "vite build"
   },
   "devDependencies": {
     "@webxdc/vite-plugins": "latest",
+    "prettier": "latest",
     "vite": "latest"
   },
   "dependencies": {
