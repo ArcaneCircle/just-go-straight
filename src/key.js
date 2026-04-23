@@ -53,13 +53,13 @@ joystick.on("start", function () {
   _joystickMoved = false;
 });
 
-joystick.on("move", function (evt, data) {
+joystick.on("move", function (evt) {
   _joystickMoved = true;
   _directionKeys.forEach(function (k) {
     _pressed[k] = null;
   });
-  if (data.direction) {
-    var angle = data.direction.angle;
+  if (evt.data && evt.data.direction) {
+    var angle = evt.data.direction.angle;
     if (angle === "up") _pressed[key.UP] = true;
     else if (angle === "right") _pressed[key.RIGHT] = true;
     else if (angle === "down") _pressed[key.DOWN] = true;
