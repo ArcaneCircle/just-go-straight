@@ -38,8 +38,6 @@ window.addEventListener(
 
 // Touch support via nipplejs virtual joystick
 var _directionKeys = [key.UP, key.RIGHT, key.DOWN, key.LEFT];
-var _joystickStartTime = 0;
-var _joystickMoved = false;
 
 var joystick = nipplejs.create({
   zone: document.body,
@@ -48,13 +46,7 @@ var joystick = nipplejs.create({
   fadeTime: 150,
 });
 
-joystick.on("start", function () {
-  _joystickStartTime = Date.now();
-  _joystickMoved = false;
-});
-
 joystick.on("move", function (evt) {
-  _joystickMoved = true;
   key.touchMoving = true;
   _directionKeys.forEach(function (k) {
     _pressed[k] = null;
@@ -73,13 +65,39 @@ joystick.on("end", function () {
   _directionKeys.forEach(function (k) {
     _pressed[k] = null;
   });
-  // Treat a short tap (no drag) as pressing Enter
-  if (!_joystickMoved && Date.now() - _joystickStartTime < 250) {
-    _pressed[key.ENTER] = true;
-    setTimeout(function () {
-      _pressed[key.ENTER] = null;
-    }, 150);
-  }
 });
+
+// Detect taps (touchstart + touchend with minimal movement and short duration)
+// and treat them as an Enter key press.
+var _tapStartTime = 0;
+var _tapStartX = 0;
+var _tapStartY = 0;
+
+document.body.addEventListener(
+  "touchstart",
+  function (e) {
+    _tapStartTime = Date.now();
+    _tapStartX = e.touches[0].clientX;
+    _tapStartY = e.touches[0].clientY;
+  },
+  { passive: true },
+);
+
+document.body.addEventListener(
+  "touchend",
+  function (e) {
+    var elapsed = Date.now() - _tapStartTime;
+    var touch = e.changedTouches[0];
+    var dx = Math.abs(touch.clientX - _tapStartX);
+    var dy = Math.abs(touch.clientY - _tapStartY);
+    if (elapsed < 250 && dx < 10 && dy < 10) {
+      _pressed[key.ENTER] = true;
+      setTimeout(function () {
+        _pressed[key.ENTER] = null;
+      }, 150);
+    }
+  },
+  { passive: true },
+);
 
 export default key;
