@@ -33,9 +33,9 @@ function raf (fn) {
   });
 }
 
-exports.start = function (fn) {
+export default {start: function start(fn) {
   return raf(function tick (dt) {
     fn(dt);
     raf(tick);
   });
-};
+}};

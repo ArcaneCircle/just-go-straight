@@ -26,4 +26,4 @@ window.addEventListener('keydown', function (e) {
   key.onKeydown(e);
 }, false);
 
-module.exports = key;
+export default key;

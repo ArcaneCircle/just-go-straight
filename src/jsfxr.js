@@ -446,8 +446,8 @@ function SfxrSynth() {
 
 // Adapted from http://codebase.es/riffwave/
 var synth = new SfxrSynth();
-// Export for the Closure Compiler
-module.exports = {
+
+export default {
   init: function (settings) {
     // Initialize SfxrParams
     synth._params.setSettings(settings);

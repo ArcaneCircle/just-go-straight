@@ -1,6 +1,6 @@
-var jsfxr = require('./jsfxr');
-var loop = require('./loop');
-var key = require('./key');
+import jsfxr from './jsfxr.js';
+import loop from './loop.js';
+import key from './key.js';
 
 (function(){
   function rand_int(max) {
