@@ -55,6 +55,7 @@ joystick.on("start", function () {
 
 joystick.on("move", function (evt) {
   _joystickMoved = true;
+  key.touchMoving = true;
   _directionKeys.forEach(function (k) {
     _pressed[k] = null;
   });
@@ -68,6 +69,7 @@ joystick.on("move", function (evt) {
 });
 
 joystick.on("end", function () {
+  key.touchMoving = false;
   _directionKeys.forEach(function (k) {
     _pressed[k] = null;
   });
