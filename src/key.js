@@ -1,3 +1,5 @@
+import nipplejs from "nipplejs";
+
 var _pressed = {};
 var key = {};
 
@@ -33,5 +35,49 @@ window.addEventListener(
   },
   false,
 );
+
+// Touch support via nipplejs virtual joystick
+var _directionKeys = [key.UP, key.RIGHT, key.DOWN, key.LEFT];
+var _joystickStartTime = 0;
+var _joystickMoved = false;
+
+var joystick = nipplejs.create({
+  zone: document.body,
+  mode: "dynamic",
+  color: "white",
+  fadeTime: 150,
+});
+
+joystick.on("start", function () {
+  _joystickStartTime = Date.now();
+  _joystickMoved = false;
+});
+
+joystick.on("move", function (evt, data) {
+  _joystickMoved = true;
+  _directionKeys.forEach(function (k) {
+    _pressed[k] = null;
+  });
+  if (data.direction) {
+    var angle = data.direction.angle;
+    if (angle === "up") _pressed[key.UP] = true;
+    else if (angle === "right") _pressed[key.RIGHT] = true;
+    else if (angle === "down") _pressed[key.DOWN] = true;
+    else if (angle === "left") _pressed[key.LEFT] = true;
+  }
+});
+
+joystick.on("end", function () {
+  _directionKeys.forEach(function (k) {
+    _pressed[k] = null;
+  });
+  // Treat a short tap (no drag) as pressing Enter
+  if (!_joystickMoved && Date.now() - _joystickStartTime < 250) {
+    _pressed[key.ENTER] = true;
+    setTimeout(function () {
+      _pressed[key.ENTER] = null;
+    }, 150);
+  }
+});
 
 export default key;
