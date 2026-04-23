@@ -342,7 +342,7 @@ function main() {
       if (!mob.lost) {
         mob.straight_count++;
 
-        if (mob.straight_count > 5) {
+        if (mob.straight_count > 10) {
           mob.win = true;
           mob.x = 10;
           mob.y = 320;
