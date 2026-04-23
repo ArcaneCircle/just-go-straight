@@ -1,8 +1,11 @@
 import jsfxr from './jsfxr.js';
 import loop from './loop.js';
 import key from './key.js';
+import "@webxdc/highscores";
 
-(function(){
+window.highscores.init({
+  getAnnouncement: (name) => `Arr! ${name} found the treasure chest!`
+}).then(() => {
   function rand_int(max) {
     return Math.random() * (max || 0xfffffff) | 0;
   }
@@ -88,6 +91,7 @@ import key from './key.js';
 
     if (mob.end > -1 && key.isDown(key.ENTER) && (endings[0] && endings[1] && endings[2] && endings[3]) && !game_complete) {
       sounds['win'].play();
+      window.highscores.setScore(1);
       game_complete = true;
     }
     if (mob.end > -1 && key.isDown(key.ENTER) && (!game_complete || timeout_game_complete <= 0)) {
@@ -223,11 +227,13 @@ import key from './key.js';
 
             if (mob.cheated) {
               sounds['win'].play();
+              window.highscores.setScore(1);
               mob.end = 0;
               mob.cheated = false;
             }
             if (mob.end == -1) {
               sounds['win'].play();
+              window.highscores.setScore(1);
               mob.end = 3;
             }
           }
@@ -781,4 +787,4 @@ import key from './key.js';
     return copy;
   }
 
-}());
+});
