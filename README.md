@@ -4,10 +4,7 @@ A port to webxdc of [Just go straight](https://github.com/Gimond/just-go-straigh
 
 ---
 
-The goal of the game is to find the treasure. The path to get it is simple, you just have to go straight.
-
-The interest of the game resides on the bet that the player will never go straight on the first try.
-But as soon as they take another direction they are lost in the jungle and at every screen change, they get a better chance to get back to the beach so they have another chance to get it right.
+The treasure is somewhere on this island. Luckily you have a map. Still, be careful not to get lost in the jungle.
 
 ## Contributing
 
