@@ -294,26 +294,27 @@ function main() {
     // update mob
     mob.moving = false;
     if (!mob.win && !mob.back_to_beach) {
+      var mobSpeed = key.touchMoving ? 200 : 300;
       if (key.isDown(key.UP)) {
-        mob.y = mob.y - 300 * dt;
+        mob.y = mob.y - mobSpeed * dt;
         mob.dir = 0;
         mob.moving = true;
         check_collisions();
       }
       if (key.isDown(key.RIGHT)) {
-        mob.x = mob.x + 300 * dt;
+        mob.x = mob.x + mobSpeed * dt;
         mob.dir = 1;
         mob.moving = true;
         check_collisions();
       }
       if (key.isDown(key.DOWN)) {
-        mob.y = mob.y + 300 * dt;
+        mob.y = mob.y + mobSpeed * dt;
         mob.dir = 2;
         mob.moving = true;
         check_collisions();
       }
       if (key.isDown(key.LEFT)) {
-        mob.x = mob.x - 300 * dt;
+        mob.x = mob.x - mobSpeed * dt;
         mob.dir = 3;
         mob.moving = true;
         check_collisions();

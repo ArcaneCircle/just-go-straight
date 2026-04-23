@@ -13,6 +13,7 @@
     "vite": "latest"
   },
   "dependencies": {
-    "@webxdc/highscores": "^5.3.0"
+    "@webxdc/highscores": "^5.3.0",
+    "nipplejs": "^1.0.1"
   }
 }
