@@ -1,8 +1,4 @@
-# <img src="public/icon.png" width="50px" height="50px"/> Just Go Straight
-
-A port to webxdc of [Just go straight](https://github.com/Gimond/just-go-straight) game.
-
----
+# <img src="public/icon.png" width="50px" height="50px"/> Treasure Island
 
 The treasure is somewhere on this island. Luckily you have a map. Still, be careful not to get lost in the jungle.
 
@@ -55,3 +51,7 @@ To automatically build and create a new GitHub release with the `.xdc` file:
 git tag -a v1.0.1
 git push origin v1.0.1
 ```
+
+## Credits
+
+This is a port to webxdc of [Just go straight](https://github.com/Gimond/just-go-straight) game.
